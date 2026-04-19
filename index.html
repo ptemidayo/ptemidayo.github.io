@@ -1,440 +1,257 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>elufisan.lab — Temidayo O. Elufisan (Sc.D)</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Temidayo Elufisan — Microbiologist & Genomicist</title>
+<meta name="description" content="Personal site of Dr. Temidayo O. Elufisan — microbiologist, genome scientist, translator of bioinformatics for animal health and the environment."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css?v=1776625758112"/>
 </head>
 <body>
 
-<div class="topbar">
-  <div class="brand">
-    <span class="prompt">$</span>
-    <span class="name">elufisan.lab</span><span class="cursor"></span>
-  </div>
-  <nav>
-    <a href="#about">about</a>
-    <a href="#research">research</a>
-    <a href="#publications">publications</a>
-    <a href="#teaching">teaching</a>
-    <a href="#tools">tools</a>
-    <a href="#news">news</a>
-    <a href="#talks">talks</a>
-    <a href="#collaborators">collabs</a>
-    <a href="#contact">contact</a>
-  </nav>
-  <div class="meta">
-    <span class="status-dot"></span>
-    <span>reading_frame <span style="color:var(--ink)">+1</span></span>
-    <span id="clock">—</span>
-  </div>
-</div>
-
-<!-- =================== HERO =================== -->
-<header class="hero ruled">
-  <div class="linenum">
-    001<br>002<br>003<br>004<br>005<br>006<br>007<br>008<br>009<br>010<br>011<br>012<br>013<br>014
-  </div>
-  <div class="hero-grid">
-    <div>
-      <div class="prompt-line"><span class="glyph">&gt;</span> whois temidayo.elufisan &nbsp;<span style="color:var(--ink-3)">// independent researcher · md, usa</span></div>
-      <h1>Temidayo O. Elufisan <span class="agar">(Sc.D)</span>,<br>microbiologist &amp; <span style="font-style:italic;color:var(--dna);">genome</span>-sequencing researcher.</h1>
-      <p class="tagline">
-        &gt; I study how bacteria <em>survive, degrade, and defend</em> — from PAH-eating Stenotrophomonas in Mexican
-        soil to sphingolipid-driven virulence in Caulobacter, to foodborne parasites at USDA-ARS. This site
-        holds my research, a running lab-notebook, and tutorials on next-generation sequencing,
-        genome assembly, and applied microbiology.
-      </p>
-
-      <div class="cta-row">
-        <a class="btn" href="#publications"><span class="caret">▸</span> read_publications</a>
-        <a class="btn ghost" href="#teaching"><span class="caret">▸</span> browse_tutorials</a>
-        <a class="btn ghost" href="assets/Elufisan_CV.pdf" download><span class="caret">▸</span> download_cv.pdf</a>
-        <a class="btn ghost" href="https://scholar.google.com/citations?user=tlwPl_UAAAAJ&hl=en" target="_blank" rel="noopener"><span class="caret">▸</span> scholar</a>
-        <a class="btn ghost" href="https://orcid.org/0000-0001-9445-0229" target="_blank" rel="noopener"><span class="caret">▸</span> orcid</a>
-        <a class="btn ghost" href="https://www.linkedin.com/in/temidayo-elufisan-954a0325/" target="_blank" rel="noopener"><span class="caret">▸</span> linkedin</a>
-      </div>
-
-      <div class="hero-stats">
-        <div class="cell"><div class="k">publications</div><div class="v">23<small>+ chapters</small></div></div>
-        <div class="cell"><div class="k">years in lab</div><div class="v">18<small>yrs</small></div></div>
-        <div class="cell"><div class="k">genomes sequenced</div><div class="v">4+<small>MDR</small></div></div>
-        <div class="cell"><div class="k">journals reviewed</div><div class="v">6<small>active</small></div></div>
-      </div>
-    </div>
-    <aside class="portrait-card">
-      <img src="assets/portrait.png" alt="Dr. Temidayo Elufisan">
-      <div class="labelrow"><span>plate_id: te_001</span><span>2024</span></div>
-      <div class="labelrow" style="border-top:1px dotted var(--rule);margin-top:4px;padding-top:8px;">
-        <span>coord</span><span>39.0°N 76.9°W</span>
-      </div>
-      <div class="labelrow"><span>aff</span><span style="color:var(--agar-dark)">USDA-ARS</span></div>
-    </aside>
+<!-- NAV -->
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="wordmark" href="index.html">Elufisan <small>T.O. / MICROBIOLOGIST</small></a>
+    <nav class="nav-links">
+      <a href="index.html">Index</a>
+      <a href="about.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="teaching.html">Teaching</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="assets/Elufisan_CV.pdf" download>CV ↓</a>
   </div>
 </header>
 
-<main>
-
-<!-- =================== ABOUT =================== -->
-<section id="about" class="ruled">
-  <div class="linenum">015<br>016<br>017<br>018<br>019<br>020<br>021<br>022<br>023<br>024<br>025<br>026<br>027<br>028<br>029<br>030<br>031<br>032<br>033<br>034<br>035<br>036<br>037<br>038<br>039<br>040</div>
-
-  <div class="section-head"><span class="sigil">§</span> about <span class="dots"></span> <span class="idx">01 / 08</span></div>
-  <div class="two-col">
-    <div>
-      <h2>A Nigeria-trained microbiologist who learned to read genomes in Mexico — and now studies foodborne parasites in Maryland.</h2>
-      <p>
-        I'm a Doctor of Science in Biotechnology (Instituto Politécnico Nacional, Mexico, 2019), with an M.Sc. in
-        Pharmaceutical Microbiology from the University of Ibadan and a B.Tech in Microbiology from LAUTECH.
-        My work has moved fluidly between wet-lab — culturing, PCR, SDS-PAGE, lipid profiling, Kirby-Bauer
-        susceptibility — and dry-lab: whole-genome sequencing, assembly with SPAdes &amp; Velvet, annotation
-        with Prokka, and comparative genomics.
-      </p>
-      <p>
-        Right now I'm an ORISE postdoctoral fellow with Dr. Jenny Maloney at the USDA Agricultural Research
-        Service in Beltsville, MD, isolating and sequencing foodborne parasites of animal and human origin.
-        I also teach — a habit I picked up running junior-high biology classes in Ibadan long before I ever
-        touched a FASTQ file.
-      </p>
-      <p>
-        This site is both a portfolio and a notebook. The <em>teaching</em> section holds step-through
-        tutorials I use with the students I mentor. The AI tutor in the bottom-right corner is trained on
-        my topics; ask it anything.
-      </p>
-    </div>
-
-    <div class="facts">
-      <div class="row"><span class="k">name</span><span class="v">Temidayo O. Elufisan</span></div>
-      <div class="row"><span class="k">title</span><span class="v green">Sc.D, Biotechnology</span></div>
-      <div class="row"><span class="k">location</span><span class="v">College Park, MD · USA</span></div>
-      <div class="row"><span class="k">current</span><span class="v">ORISE postdoc, USDA-ARS</span></div>
-      <div class="row"><span class="k">trained at</span><span class="v">IPN (MX) · U. Ibadan · LAUTECH</span></div>
-      <div class="row"><span class="k">memberships</span><span class="v">ASM · CSM</span></div>
-      <div class="row"><span class="k">reviewer</span><span class="v">PLOS ONE · Genes (MDPI) · Antibiotics (MDPI) · Current Microbiology · CyTA · Bioremediation J.</span></div>
-      <div class="row"><span class="k">email</span><span class="v"><a href="mailto:ptemidayo@gmail.com">ptemidayo@gmail.com</a></span></div>
-      <div class="row"><span class="k">tel</span><span class="v">+1 202-695-0877</span></div>
-      <div class="row"><span class="k">cv</span><span class="v"><a href="assets/Elufisan_CV.pdf" download>full curriculum vitae (pdf)</a></span></div>
-      <div class="row"><span class="k">orcid</span><span class="v"><a href="https://orcid.org/0000-0001-9445-0229" target="_blank" rel="noopener">0000-0001-9445-0229</a></span></div>
-      <div class="row"><span class="k">scholar</span><span class="v"><a href="https://scholar.google.com/citations?user=tlwPl_UAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar profile</a></span></div>
-      <div class="row"><span class="k">linkedin</span><span class="v"><a href="https://www.linkedin.com/in/temidayo-elufisan-954a0325/" target="_blank" rel="noopener">temidayo-elufisan</a></span></div>
-    </div>
-  </div>
-</section>
-
-<!-- =================== RESEARCH =================== -->
-<section id="research" class="ruled">
-  <div class="linenum">041<br>042<br>043<br>044<br>045<br>046<br>047<br>048<br>049<br>050<br>051<br>052<br>053<br>054<br>055<br>056<br>057<br>058<br>059<br>060<br>061<br>062<br>063<br>064<br>065<br>066<br>067<br>068<br>069<br>070</div>
-
-  <div class="section-head"><span class="sigil">§</span> research <span class="dots"></span> <span class="idx">02 / 08</span></div>
-  <h2>Three active threads.</h2>
-  <p style="margin-bottom:28px;color:var(--ink-2)">Each thread has its own organisms, methods, and open questions — but they share a spine: <em>use genome-scale data to explain what a bacterium is actually doing in its environment.</em></p>
-
-  <div class="areas">
-    <div class="area">
-      <div class="tag">thread A // parasites</div>
-      <h3>Foodborne parasites — isolation, genome assembly &amp; bioinformatics</h3>
-      <p>At USDA-ARS with Dr. Jenny Maloney: isolating and characterizing foodborne pathogens of animal and human origin, sequencing their genomes, and performing comparative analysis to map emerging risks.</p>
-      <div class="orgs"><span>USDA-ARS</span><span>2024 – 2026</span><span>ORISE fellowship</span></div>
-    </div>
-    <div class="area">
-      <div class="tag">thread B // lipids</div>
-      <h3>Sphingolipids &amp; virulence in Caulobacter crescentus</h3>
-      <p>Tested the role of sphingolipid biosynthesis in virulence using Galleria mellonella larvae injected with wild-type and serine-palmitoyl-transferase-deficient strains. Also hunting sphingolipid homologs in E. coli BL21(DE3) via SynTax and NCBI BLAST.</p>
-      <div class="orgs"><span>UNAM / CCG</span><span>Geiger lab</span><span>2021 – 2023</span></div>
-    </div>
-    <div class="area">
-      <div class="tag">thread C // stenotrophomonas</div>
-      <h3>Stenotrophomonas &amp; the genomic basis of PAH degradation</h3>
-      <p>Isolated multiple Stenotrophomonas from Mexican soil &amp; sewage, characterized PAH-degrading capacity (GC &amp; FTIR), profiled antibiotic susceptibility, and resolved four MDR genomes — ongoing comparative analysis of resistance &amp; catabolic gene clusters.</p>
-      <div class="orgs"><span>IPN / CBG</span><span>Guo lab</span><span>2015 – ongoing</span></div>
-    </div>
-  </div>
-
-  <h3 style="margin-top:40px;margin-bottom:14px;">Career timeline</h3>
-  <div class="timeline">
-    <div class="entry">
-      <div class="when">2024 — 2026</div><div class="mark"></div>
-      <div class="what"><span class="role">ORISE postdoctoral fellow</span> · <span class="org">USDA-ARS, Beltsville MD</span><div class="desc">Foodborne parasite isolation, genome sequencing, assembly, annotation &amp; comparative bioinformatics with Dr. Jenny Maloney.</div></div>
-    </div>
-    <div class="entry alt">
-      <div class="when">Oct 2023 — present</div><div class="mark"></div>
-      <div class="what"><span class="role">Visiting Scholar</span> · <span class="org">Universidad Tecnológico Tamaulipas Norte, Reynosa, MX</span><div class="desc">Training undergraduates in scientific communication, seminar presentation and interview preparation.</div></div>
-    </div>
-    <div class="entry">
-      <div class="when">Nov 2021 — Oct 2023</div><div class="mark"></div>
-      <div class="what"><span class="role">Postdoctoral fellow</span> · <span class="org">Ecological Genomics, UNAM CCG (Geiger Lab)</span><div class="desc">Sphingolipid/virulence work in Caulobacter crescentus; lipid profiling, RT-PCR, TLC, SDS-PAGE. CONACYT-funded.</div></div>
-    </div>
-    <div class="entry alt">
-      <div class="when">Aug 2017 — Dec 2021</div><div class="mark"></div>
-      <div class="what"><span class="role">Science Tutor</span> · <span class="org">Universidad Tecmilenio, Reynosa MX</span><div class="desc">Mathematics, research methodology, and introductory human physiology.</div></div>
-    </div>
-    <div class="entry past">
-      <div class="when">Jan 2015 — Jul 2019</div><div class="mark"></div>
-      <div class="what"><span class="role">Doctoral researcher</span> · <span class="org">CBG, Instituto Politécnico Nacional, MX</span><div class="desc">Sc.D thesis: isolation, characterization and whole-genome sequencing of Stenotrophomonas &amp; Bdellovibrio from Mexican soil. CONACYT fellowship.</div></div>
-    </div>
-    <div class="entry past">
-      <div class="when">Apr 2010 — Apr 2020</div><div class="mark"></div>
-      <div class="what"><span class="role">Research Fellow</span> · <span class="org">NACETEM, Obafemi Awolowo University, Nigeria</span><div class="desc">Co-authored Nigeria's current science &amp; innovation policy; trained postgraduate diploma students in technology management.</div></div>
-    </div>
-    <div class="entry past">
-      <div class="when">Oct 2008 — Oct 2011</div><div class="mark"></div>
-      <div class="what"><span class="role">M.Sc. researcher</span> · <span class="org">Pharmaceutical Microbiology, University of Ibadan</span><div class="desc">Antibiotic susceptibility of Staphylococcus aureus from wound and HVS swabs.</div></div>
-    </div>
-    <div class="entry past">
-      <div class="when">Sep 2007 — Mar 2010</div><div class="mark"></div>
-      <div class="what"><span class="role">Principal, Junior High</span> · <span class="org">Imperial College, Sasa-Ojoo Ibadan</span><div class="desc">Taught biology and oversaw junior-high administration.</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- =================== PUBLICATIONS =================== -->
-<section id="publications" class="ruled">
-  <div class="linenum">071<br>072<br>073<br>074<br>075<br>076<br>077<br>078<br>079<br>080<br>081<br>082<br>083<br>084<br>085<br>086<br>087<br>088<br>089<br>090<br>091<br>092<br>093<br>094<br>095<br>096<br>097<br>098<br>099<br>100</div>
-
-  <div class="section-head"><span class="sigil">§</span> publications <span class="dots"></span> <span class="idx">03 / 08</span></div>
-  <h2>Peer-reviewed papers, reviews &amp; book chapters.</h2>
-
-  <div class="pubs-controls">
-    <span class="lbl">&gt; filter:</span>
-    <button class="chip pub-chip on" data-type="all">all</button>
-    <button class="chip pub-chip" data-type="paper">research</button>
-    <button class="chip pub-chip" data-type="review">reviews</button>
-    <button class="chip pub-chip" data-type="chapter">chapters</button>
-    <button class="chip pub-chip" data-type="preprint">preprints</button>
-    <span class="lbl" style="margin-left:14px">&gt; search:</span>
-    <input id="pub-search" type="text" placeholder="e.g. stenotrophomonas, PAH, sphingolipid…">
-    <span class="lbl" id="pub-count" style="margin-left:auto">—</span>
-  </div>
-
-  <table class="pub-table">
-    <thead>
-      <tr>
-        <th>#</th><th>year</th><th>title / venue / authors</th><th>type</th>
-      </tr>
-    </thead>
-    <tbody id="pub-body"></tbody>
-  </table>
-</section>
-
-<!-- =================== TEACHING =================== -->
-<section id="teaching" class="ruled">
-  <div class="linenum">101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111<br>112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126</div>
-
-  <div class="section-head"><span class="sigil">§</span> teaching <span class="dots"></span> <span class="idx">04 / 08</span></div>
-  <h2>Interactive tutorials in microbiology, NGS &amp; bioinformatics.</h2>
-  <p style="color:var(--ink-2);margin-bottom:24px">Built around the work I actually do. Each tutorial is a step-through — small commands, short explanations, a running output pane. Start anywhere; the AI tutor in the corner will pick up where you leave off.</p>
-
-  <div class="courses">
-    <div class="course">
-      <div class="cid">TUT.01 · interactive</div>
-      <h3>Assemble a bacterial genome from scratch</h3>
-      <p>A 6-step walkthrough: raw reads → QC with FastQC → trimming → assembly with SPAdes → annotation with Prokka → a simple comparative view. Based on the Stenotrophomonas SVIA2 pipeline published in MRA 2019.</p>
-      <div class="cmeta"><span class="live">live</span><span>6 steps</span><span>≈ 25 min</span></div>
-      <a class="cbtn" href="tutorial.html"><span class="caret">▸</span> open_tutorial</a>
-    </div>
-    <div class="course">
-      <div class="cid">TUT.02 · reading</div>
-      <h3>Next-generation sequencing — what actually happens?</h3>
-      <p>From library prep to base calls. Illumina vs. Nanopore intuition, read quality scores, coverage math, and when each platform makes sense for a bacterial project.</p>
-      <div class="cmeta"><span>reading</span><span>8 min</span><span>coming soon</span></div>
-      <a class="cbtn" style="pointer-events:none;opacity:0.5"><span class="caret">▸</span> draft</a>
-    </div>
-    <div class="course">
-      <div class="cid">TUT.03 · reading</div>
-      <h3>Antimicrobial resistance from a genome point of view</h3>
-      <p>CARD &amp; ResFinder basics — how we translate a resistance phenotype into specific gene calls, and what "plasmid-borne" really means for surveillance.</p>
-      <div class="cmeta"><span>reading</span><span>12 min</span><span>coming soon</span></div>
-      <a class="cbtn" style="pointer-events:none;opacity:0.5"><span class="caret">▸</span> draft</a>
-    </div>
-    <div class="course">
-      <div class="cid">TUT.04 · reading</div>
-      <h3>Intro to applied microbiology: culturing &amp; identifying a bacterium</h3>
-      <p>Kirby-Bauer susceptibility, 16S rRNA amplification, and the everyday decisions behind identifying an isolate from an environmental or clinical sample.</p>
-      <div class="cmeta"><span>reading</span><span>15 min</span><span>coming soon</span></div>
-      <a class="cbtn" style="pointer-events:none;opacity:0.5"><span class="caret">▸</span> draft</a>
-    </div>
-  </div>
-</section>
-
-<!-- =================== TOOLS =================== -->
-<section id="tools" class="ruled">
-  <div class="linenum">127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146</div>
-
-  <div class="section-head"><span class="sigil">§</span> tools &amp; datasets <span class="dots"></span> <span class="idx">05 / 08</span></div>
-  <h2>Software and data I use — and occasionally contribute to.</h2>
-
-  <div class="tools-grid">
-    <div class="tool"><div class="name">SPAdes</div><div class="desc">Short-read assembler. Default for bacterial isolates &lt; 10 Mb.</div></div>
-    <div class="tool"><div class="name">Velvet</div><div class="desc">Kept around for comparison &amp; legacy projects.</div></div>
-    <div class="tool"><div class="name">Prokka</div><div class="desc">Rapid prokaryotic annotation; used on every Stenotrophomonas genome in our PeerJ &amp; MRA papers.</div></div>
-    <div class="tool"><div class="name">BLAST+ / NCBI</div><div class="desc">For homology hunts — including finding sphingolipid biosynthesis homologs in E. coli.</div></div>
-    <div class="tool"><div class="name">SynTax</div><div class="desc">Synteny &amp; taxonomy context for candidate gene clusters.</div></div>
-    <div class="tool"><div class="name">MEGA X</div><div class="desc">Multiple sequence alignment &amp; phylogenetics.</div></div>
-    <div class="tool"><div class="name">FastQC / Trimmomatic</div><div class="desc">Read QC &amp; trimming — step 1 of every assembly tutorial.</div></div>
-    <div class="tool"><div class="name">R &amp; Python</div><div class="desc">Used at a working beginner's level for plotting &amp; simple genome parsing.</div></div>
-  </div>
-
-  <h3 style="margin-top:32px;margin-bottom:12px;font-size:18px;">Public data deposits</h3>
-  <div class="tools-grid">
-    <div class="tool"><div class="name">S. maltophilia SVIA2</div><div class="desc">Complete genome, Tabasco MX crude-oil soil. GenBank / MRA 2019.</div></div>
-    <div class="tool"><div class="name">Stenotrophomonas sp. Pemsol</div><div class="desc">PAH-degrader. PeerJ 2020. Genome + degradation assay data.</div></div>
-    <div class="tool"><div class="name">Bdellovibrio reynosensis</div><div class="desc">Novel species description. IJSEM 2022.</div></div>
-    <div class="tool"><div class="name">Sphingobium yanoikuyae S72</div><div class="desc">Complete genome. Applied Sciences 2022.</div></div>
-  </div>
-</section>
-
-<!-- =================== NEWS =================== -->
-<section id="news" class="ruled">
-  <div class="linenum">147<br>148<br>149<br>150<br>151<br>152<br>153<br>154<br>155<br>156<br>157<br>158<br>159<br>160<br>161<br>162<br>163<br>164<br>165<br>166</div>
-
-  <div class="section-head"><span class="sigil">§</span> news_log <span class="dots"></span> <span class="idx">06 / 08</span></div>
-  <h2>Lab notebook &amp; updates.</h2>
-
-  <div class="news-feed">
-    <div class="item"><div class="when">2026-03</div><div class="what"><span class="tag teach">teach</span>Released TUT.01 — the bacterial genome assembly walkthrough — as a live step-through here on elufisan.lab.</div></div>
-    <div class="item"><div class="when">2026-02</div><div class="what"><span class="tag">log</span>Wrapping up a second year at USDA-ARS. Final-stretch comparative analysis of four MDR Stenotrophomonas genomes from Mexico is in progress.</div></div>
-    <div class="item"><div class="when">2024-02</div><div class="what"><span class="tag paper">paper</span>Olea-Ozuna et al. <em>"Genes required for the formation of virulence-provoking bacterial sphingolipids"</em> — bioRxiv preprint with the Geiger lab.</div></div>
-    <div class="item"><div class="when">2024-02</div><div class="what"><span class="tag">move</span>Joined USDA-ARS in Beltsville, MD as an ORISE postdoctoral fellow with Dr. Jenny Maloney.</div></div>
-    <div class="item"><div class="when">2023-09</div><div class="what"><span class="tag paper">paper</span>Martínez-Herrera et al. — review on Bacillus cereus as a PHA producer, <em>Process Biochemistry</em>.</div></div>
-    <div class="item"><div class="when">2022-12</div><div class="what"><span class="tag paper">paper</span>Ajao et al. — <em>Bdellovibrio reynosensis sp. nov.</em>, a new species described from Mexican soil. <em>IJSEM</em>.</div></div>
-    <div class="item"><div class="when">2022-06</div><div class="what"><span class="tag paper">paper</span>Complete genome of Sphingobium yanoikuyae S72. <em>Applied Sciences</em>.</div></div>
-    <div class="item"><div class="when">2020-01</div><div class="what"><span class="tag paper">paper</span>Stenotrophomonas sp. Pemsol — PAH degradation &amp; genome analysis. <em>PeerJ</em>.</div></div>
-  </div>
-</section>
-
-<!-- =================== TALKS =================== -->
-<section id="talks" class="ruled">
-  <div class="linenum">167<br>168<br>169<br>170<br>171<br>172<br>173<br>174<br>175<br>176<br>177<br>178<br>179<br>180<br>181<br>182<br>183<br>184</div>
-
-  <div class="section-head"><span class="sigil">§</span> talks &amp; media <span class="dots"></span> <span class="idx">07 / 08</span></div>
-  <h2>Selected talks and poster presentations.</h2>
-
-  <div class="timeline" style="margin-top:14px">
-    <div class="entry"><div class="when">Aug 2017</div><div class="mark"></div><div class="what"><span class="role">Poster</span> · <span class="org">UTRGV School of Medicine Inaugural Research Symposium</span><div class="desc">Characterization and antibiotic susceptibility pattern of community-isolated Stenotrophomonas species.</div></div></div>
-    <div class="entry alt"><div class="when">Jul 2017</div><div class="mark"></div><div class="what"><span class="role">Poster</span> · <span class="org">7th FEMS Congress, Valencia, Spain</span><div class="desc">Hydrocarbon tolerance &amp; biodegradation potential of Stenotrophomonas maltophilia from Mexican crude-oil-contaminated soils.</div></div></div>
-    <div class="entry"><div class="when">Jun 2016</div><div class="mark"></div><div class="what"><span class="role">Poster</span> · <span class="org">1st Binational Conference on Biotechnology, Reynosa MX</span><div class="desc">Isolation and characterization of Stenotrophomonas species from Mexico.</div></div></div>
-    <div class="entry"><div class="when">May 2016</div><div class="mark"></div><div class="what"><span class="role">Oral</span> · <span class="org">XI Jornadas Académicas Doctorado en Ciencias en Biotecnología, Durango MX</span><div class="desc">Advances on the isolation and genomic characterization of Stenotrophomonas from soil and sewage from Mexico.</div></div></div>
-    <div class="entry alt"><div class="when">Feb 2016</div><div class="mark"></div><div class="what"><span class="role">Oral</span> · <span class="org">70th SAES Annual Meeting, Texas A&amp;M Weslaco</span><div class="desc">First reports on the isolation of Bdellovibrio species from soil in Mexico.</div></div></div>
-    <div class="entry past"><div class="when">Sep 2015</div><div class="mark"></div><div class="what"><span class="role">Proceedings</span> · <span class="org">World Congress on Antibiotics, Las Vegas</span><div class="desc">The role of predatory bacteria towards the control of microbial resistance.</div></div></div>
-    <div class="entry past"><div class="when">2013</div><div class="mark"></div><div class="what"><span class="role">Oral</span> · <span class="org">Nigeria Solar Energy Society Conference</span><div class="desc">Biotechnology — a tool for sustainable algae-based biodiesel production in Nigeria.</div></div></div>
-  </div>
-</section>
-
-<!-- =================== COLLABORATORS =================== -->
-<section id="collaborators" class="ruled">
-  <div class="linenum">185<br>186<br>187<br>188<br>189<br>190<br>191<br>192<br>193<br>194<br>195<br>196<br>197<br>198</div>
-
-  <div class="section-head"><span class="sigil">§</span> collaborators <span class="dots"></span> <span class="idx">08 / 08</span></div>
-  <h2>People I learn with.</h2>
-
-  <div class="tools-grid">
-    <div class="tool"><div class="name">Dr. Jenny Maloney</div><div class="desc">USDA-ARS, Beltsville, MD · current postdoc supervisor. Foodborne parasite genomics.</div></div>
-    <div class="tool"><div class="name">Dr. Otto Geiger</div><div class="desc">UNAM CCG, Mexico · bacterial lipid biosynthesis &amp; virulence.</div></div>
-    <div class="tool"><div class="name">Dr. Xianwu Guo</div><div class="desc">CBG, IPN, Mexico · doctoral supervisor. Environmental bacterial genomics.</div></div>
-    <div class="tool"><div class="name">Dr. Miguel-Ángel Villalobos-López</div><div class="desc">CBA, IPN, Mexico · co-supervisor, doctoral studies.</div></div>
-    <div class="tool"><div class="name">Dr. Omotayo O. Oyedara</div><div class="desc">Long-standing co-author — Bdellovibrio, antiviral repositioning, phyto-oxylipins.</div></div>
-    <div class="tool"><div class="name">Dr. Abiodun Egbetokun</div><div class="desc">NACETEM, Nigeria · science &amp; innovation policy.</div></div>
-    <div class="tool"><div class="name">Rodríguez-Luna, Sánchez-Varela et al.</div><div class="desc">CBG Reynosa · Stenotrophomonas &amp; Aeromonas collaborators.</div></div>
-    <div class="tool"><div class="name">Martínez-Herrera, Aemán-Huerta et al.</div><div class="desc">Nuevo León · Bacillus cereus PHA production.</div></div>
-  </div>
-</section>
-
-<!-- =================== CONTACT =================== -->
-<section id="contact" class="ruled">
-  <div class="linenum">199<br>200<br>201<br>202<br>203<br>204<br>205<br>206<br>207<br>208<br>209<br>210<br>211<br>212<br>213<br>214<br>215<br>216</div>
-
-  <div class="section-head"><span class="sigil">§</span> contact <span class="dots"></span> <span class="idx">+ / end</span></div>
-  <h2>Get in touch.</h2>
-
-  <div class="contact-grid">
-    <form id="contact-form" class="contact">
-      <div class="field"><label>your name</label><input name="name" required placeholder="Dr. Jane Doe"></div>
-      <div class="field"><label>your email</label><input name="email" type="email" required placeholder="jane@university.edu"></div>
-      <div class="field"><label>topic</label>
-        <select name="topic">
-          <option>collaboration</option>
-          <option>teaching / tutoring</option>
-          <option>peer review</option>
-          <option>media / interview</option>
-          <option>student inquiry</option>
-          <option>general</option>
-        </select>
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Portfolio · 2013 — 2026</div>
+        <h1 class="display" style="margin:24px 0 0;">
+          Reading the <em>invisible</em><br/>
+          genomes that shape<br/>
+          our <span class="accent">food</span>, our <span class="clay">land</span>,<br/>
+          and our <em>health</em>.
+        </h1>
+        <div class="hero-meta">
+          <div class="cell">Based in<b>Nigeria ⇄ Mexico</b></div>
+          <div class="cell">Currently<b>USDA-ARS · FADRU</b></div>
+          <div class="cell">Focus<b>Genomics · NGS · AMR</b></div>
+          <div class="cell">Papers<b>20+ peer-reviewed</b></div>
+        </div>
       </div>
-      <div class="field"><label>message</label><textarea name="message" rows="6" required placeholder="&gt; what's on your mind?"></textarea></div>
-      <button class="submit" type="submit"><span class="caret">▸</span> send_message</button>
-      <div id="form-msg" class="form-msg"></div>
-    </form>
-
-    <div class="facts" style="align-self:start">
-      <div class="row"><span class="k">email</span><span class="v"><a href="mailto:ptemidayo@gmail.com">ptemidayo@gmail.com</a></span></div>
-      <div class="row"><span class="k">tel (US)</span><span class="v">+1 202-695-0877</span></div>
-      <div class="row"><span class="k">tel (MX)</span><span class="v">+52 899 185 2536</span></div>
-      <div class="row"><span class="k">mailing</span><span class="v">9346 Cherry Hill Road, Apt #104<br>College Park, MD 20704 · USA</span></div>
-      <div class="row"><span class="k">availability</span><span class="v green">accepting mentorship inquiries</span></div>
-      <div class="row"><span class="k">orcid</span><span class="v"><a href="https://orcid.org/0000-0001-9445-0229" target="_blank" rel="noopener">0000-0001-9445-0229</a></span></div>
-      <div class="row"><span class="k">scholar</span><span class="v"><a href="https://scholar.google.com/citations?user=tlwPl_UAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a></span></div>
-      <div class="row"><span class="k">linkedin</span><span class="v"><a href="https://www.linkedin.com/in/temidayo-elufisan-954a0325/" target="_blank" rel="noopener">in/temidayo-elufisan</a></span></div>
-      <div class="row"><span class="k">tutor</span><span class="v">↘ bottom-right — 24/7 AI assistant trained on my topics</span></div>
+      <div class="hero-art">
+        <img src="assets/portrait.png" alt="Temidayo Elufisan portrait"/>
+        <div class="corner-tag">PLT 01 / 2026</div>
+        <div class="caption">
+          <span>T.O.E — Portrait study</span>
+          <span>24° 47′ N</span>
+        </div>
+      </div>
     </div>
   </div>
+  <div class="hero-scroll">Scroll</div>
 </section>
 
-</main>
-
-<footer>
-  <div>
-    <span class="ascii">┌─[ elufisan.lab ]─┐</span>
-    &nbsp;&nbsp;© 2010–2026 · Temidayo O. Elufisan
-  </div>
-  <div>
-    &gt; handcrafted · last_build: <span id="build">2026-04-19</span>
-  </div>
-</footer>
-
-<!-- =================== AI TUTOR =================== -->
-<div id="tutor" class="tutor">
-  <button id="tutor-open" class="tutor-toggle">
-    <span class="dot"></span>
-    <span>ask_the_tutor</span>
-    <span style="color:var(--agar)">_</span>
-  </button>
-  <div class="tutor-panel">
-    <div class="tutor-header">
-      <div class="title"><span class="dot"></span> tutor // dr.e · teaching assistant</div>
-      <button id="tutor-close" class="close">×</button>
-    </div>
-    <div id="tutor-body" class="tutor-body"></div>
-    <div class="tutor-suggestions">
-      <div class="sug" data-q="Walk me through how short-read genome assembly with SPAdes actually works.">↳ how does SPAdes work?</div>
-      <div class="sug" data-q="What is 16S rRNA sequencing and why do microbiologists use it?">↳ 16S rRNA — why?</div>
-      <div class="sug" data-q="Explain antimicrobial resistance genes from a genome-analysis perspective.">↳ AMR from genomes</div>
-      <div class="sug" data-q="What does Dr. Elufisan study?">↳ what do you research?</div>
-    </div>
-    <form id="tutor-form" class="tutor-input">
-      <span class="prefix">&gt;</span>
-      <input id="tutor-input" autocomplete="off" placeholder="ask about NGS, assembly, AMR…">
-      <button id="tutor-send" type="submit">send</button>
-    </form>
+<!-- SPECIMEN MARQUEE -->
+<div class="specimen">
+  <div class="specimen-track">
+    <span>Stenotrophomonas</span><span class="dot">·</span>
+    <span>Bdellovibrio</span><span class="dot">·</span>
+    <span>Sphingolipids</span><span class="dot">·</span>
+    <span>Bacillus cereus</span><span class="dot">·</span>
+    <span>Parasites</span><span class="dot">·</span>
+    <span>Azo dyes</span><span class="dot">·</span>
+    <span>PAH degradation</span><span class="dot">·</span>
+    <span>Stenotrophomonas</span><span class="dot">·</span>
+    <span>Bdellovibrio</span><span class="dot">·</span>
+    <span>Sphingolipids</span><span class="dot">·</span>
+    <span>Bacillus cereus</span><span class="dot">·</span>
+    <span>Parasites</span><span class="dot">·</span>
+    <span>Azo dyes</span><span class="dot">·</span>
+    <span>PAH degradation</span><span class="dot">·</span>
   </div>
 </div>
 
-<div id="tweaks-panel" class="tweaks-panel"></div>
+<!-- ABOUT SNIPPET -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker-col">
+        <div class="eyebrow">01 / Statement</div>
+        <h2 class="display">A life <em>between</em> the gel, the field, and the terminal.</h2>
+      </div>
+      <p>I'm a microbiologist trained at Obafemi Awolowo and in the Mexican CINVESTAV system. My work threads through three questions: <b>what organisms live in places we overlook</b>, <b>what they can do for us (or to us)</b>, and <b>how do we read that from their genomes</b>. Today I run next-generation sequencing and assembly pipelines at USDA-ARS to detect parasites that cost livestock producers hundreds of millions a year. I also teach — because a pipeline unused is a pipeline forgotten.</p>
+    </div>
+    <a class="btn ghost" href="about.html">Read the long version <span class="arrow">→</span></a>
+  </div>
+</section>
 
-<script src="publications.js"></script>
-<script src="app.js"></script>
+<!-- STATS -->
+<section class="section tight" style="padding:0;">
+  <div class="container">
+    <div class="stats-strip">
+      <div class="cell">
+        <div class="n" data-num="23" data-suffix="pubs">0</div>
+        <div class="k">Peer-reviewed outputs</div>
+      </div>
+      <div class="cell">
+        <div class="n" data-num="12">0</div>
+        <div class="k">Years in the lab</div>
+      </div>
+      <div class="cell">
+        <div class="n" data-num="7" data-suffix="orgs">0</div>
+        <div class="k">Institutions & continents</div>
+      </div>
+      <div class="cell">
+        <div class="n" data-num="3">0</div>
+        <div class="k">Research threads</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED WORK -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker-col">
+        <div class="eyebrow">02 / Selected work</div>
+        <h2 class="display">Three <em>threads</em>.<br/>Many <span class="clay">organisms</span>.</h2>
+      </div>
+      <p>The cleanest way to understand my portfolio is through three ongoing projects. Each has grown into a distinct body of published work, but all three share a method: sequence first, ask questions once the data disagrees with you.</p>
+    </div>
+
+    <div class="work-grid">
+      <a class="work-card span-7" href="research.html#parasites">
+        <div class="art">${'' /* JS-injected */}
+          <div data-art="worms"></div>
+        </div>
+        <div class="meta"><span>CASE 01</span><span>USDA-ARS · 2024 —</span></div>
+        <h3><em>Reading</em> parasites before they read the herd</h3>
+        <p>High-throughput sequencing pipelines to detect and identify livestock parasites at single-read resolution — so that outbreaks are caught weeks earlier than morphology alone allows.</p>
+      </a>
+      <a class="work-card span-5" href="research.html#sphingolipids">
+        <div class="art"><div data-art="helix"></div></div>
+        <div class="meta"><span>CASE 02</span><span>Geiger lab · 2024</span></div>
+        <h3>The genes that make a <em>virulent</em> lipid</h3>
+        <p>Identifying the bacterial gene set required to synthesise sphingolipids that provoke virulence — with Otto Geiger's group (bioRxiv, 2024).</p>
+      </a>
+
+      <a class="work-card span-4" href="research.html#stenotrophomonas">
+        <div class="art"><div data-art="stenotrophomonas"></div></div>
+        <div class="meta"><span>CASE 03</span><span>PeerJ · 2020</span></div>
+        <h3>A <em>Stenotrophomonas</em> that eats oil</h3>
+        <p>Discovery, genome analysis and PAH-degradation profile of <i>Stenotrophomonas</i> sp. Pemsol, isolated from contaminated Mexican soil.</p>
+      </a>
+      <a class="work-card span-4" href="research.html#azodyes">
+        <div class="art"><div data-art="waves"></div></div>
+        <div class="meta"><span>CASE 04</span><span>Braz. J. Microbiol. · 2021</span></div>
+        <h3>Undoing the <em>dye</em>, bacterially</h3>
+        <p>Two Stenotrophomonas strains from a Tepetitla textile effluent that decolorize and degrade azo dyes — an industrial-biotech application in progress.</p>
+      </a>
+      <a class="work-card span-4" href="research.html#predators">
+        <div class="art"><div data-art="bdellovibrio"></div></div>
+        <div class="meta"><span>CASE 05</span><span>IJSEM · 2022</span></div>
+        <h3>A <em>predator</em> in the soil</h3>
+        <p>Naming <i>Bdellovibrio reynosensis</i> sp. nov. — a small predatory bacterium that hunts other Gram-negatives. Part of an ongoing exploration of bacterial predation as biocontrol.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOREST BLOCK -->
+<section class="section forest">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker-col">
+        <div class="eyebrow">03 / Teaching</div>
+        <h2 class="display">From the <em>terminal</em>,<br/>to the page,<br/>to you.</h2>
+      </div>
+      <p>Sequencing is now cheap. Sense-making is not. I write step-by-step tutorials that take a real dataset — often one of my own — from raw reads to an annotated genome, explained as if you were beside me at the bench. Start with Tutorial 01.</p>
+    </div>
+    <a class="btn ghost" style="border-color:var(--bone);color:var(--bone);" href="teaching.html">Browse tutorials <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- CONTACT CTA -->
+<section class="section bone-2">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:end;">
+      <div>
+        <div class="eyebrow">04 / Write to me</div>
+        <h2 class="display" style="margin-top:24px;">Working on something <em>adjacent</em>?</h2>
+      </div>
+      <div>
+        <p class="body-prose">I'm open to collaboration on applied microbiology, NGS, comparative genomics and tutorial co-authorship. Students looking for help framing a sequencing project — also welcome.</p>
+        <div style="display:flex;gap:14px;margin-top:24px;flex-wrap:wrap;">
+          <a class="btn" href="contact.html">Send a note <span class="arrow">→</span></a>
+          <a class="btn ghost" href="mailto:ptemidayo@gmail.com">ptemidayo@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="foot-title">Elufisan.</div>
+        <div class="foot-sub">T. Olukayode · est. 2013</div>
+        <p style="font-size:14px;max-width:34ch;color:#a7a9a5;">Built as a living notebook — regularly updated with new papers, new talks, and new tutorials.</p>
+      </div>
+      <div>
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="research.html">Research</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="teaching.html">Teaching</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Elsewhere</h5>
+        <ul>
+          <li><a href="https://orcid.org/0000-0002-8645-2049">ORCID</a></li>
+          <li><a href="https://scholar.google.com/citations?user=Elufisan">Scholar</a></li>
+          <li><a href="https://www.linkedin.com/in/temidayo-elufisan">LinkedIn</a></li>
+          <li><a href="https://github.com/ptemidayo">GitHub</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:ptemidayo@gmail.com">ptemidayo@gmail.com</a></li>
+          <li><a href="contact.html">Contact form</a></li>
+          <li><a href="assets/Elufisan_CV.pdf">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bot">
+      <div>© 2026 Temidayo O. Elufisan</div>
+      <div>Handwritten HTML · Fraunces & Inter Tight · elufisantemidayo.com</div>
+    </div>
+  </div>
+</footer>
+
+<script src="publications.js?v=1776625758112"></script>
+<script src="app.js?v=1776625758112"></script>
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    __initClock();
-    __initNav();
-    __initPubs();
-    __initTutor();
-    __initContact();
-    __initTweaks();
+  // Inject decorative art into [data-art]
+  document.querySelectorAll('[data-art]').forEach(el => {
+    const kind = el.dataset.art;
+    if (window.ART && window.ART[kind]) el.outerHTML = window.ART[kind]();
   });
 </script>
+
 </body>
 </html>

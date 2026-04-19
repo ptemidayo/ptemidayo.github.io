@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Contact — Temidayo Elufisan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css?v=1776625764458"/>
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a class="wordmark" href="index.html">Elufisan <small>T.O. / MICROBIOLOGIST</small></a>
+    <nav class="nav-links">
+      <a href="index.html">Index</a>
+      <a href="about.html">About</a>
+      <a href="research.html">Research</a>
+      <a href="publications.html">Publications</a>
+      <a href="teaching.html">Teaching</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <a class="nav-cta" href="assets/Elufisan_CV.pdf" download>CV ↓</a>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="eyebrow">Contact · Write to me</div>
+    <h1 class="display" style="font-size:clamp(48px,7vw,110px);margin-top:20px;">
+      Let's trade <em>notes</em>.
+    </h1>
+    <p class="lede" style="margin-top:32px;">Collaboration, tutorial co-authorship, mentoring, talks, reviewer invitations — all welcome. I try to reply within a few days.</p>
+
+    <div class="contact-split" style="margin-top:60px;">
+      <form class="contact-form" id="contactForm">
+        <div class="field"><label>Name</label><input name="name" required/></div>
+        <div class="field"><label>Email</label><input name="email" type="email" required/></div>
+        <div class="field"><label>Affiliation (optional)</label><input name="affiliation"/></div>
+        <div class="field"><label>Subject</label>
+          <select name="subject">
+            <option>Collaboration</option>
+            <option>Tutorial co-authorship</option>
+            <option>Student / mentoring</option>
+            <option>Speaking invitation</option>
+            <option>Reviewer invitation</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="field"><label>Message</label><textarea name="message" rows="6" required></textarea></div>
+        <button type="submit" class="btn">Send <span class="arrow">→</span></button>
+        <div class="form-msg" id="formMsg">Your email client should have opened. If not, write to ptemidayo@gmail.com directly.</div>
+      </form>
+
+      <div>
+        <div class="facts-stack" style="margin-top:0;border-top:1px solid var(--rule);">
+          <div class="row"><div class="k">Email</div><div class="v"><a href="mailto:ptemidayo@gmail.com">ptemidayo@gmail.com</a></div></div>
+          <div class="row"><div class="k">ORCID</div><div class="v"><a href="https://orcid.org/0000-0002-8645-2049">0000-0002-8645-2049</a></div></div>
+          <div class="row"><div class="k">Scholar</div><div class="v"><a href="https://scholar.google.com/citations?user=Elufisan">Google Scholar profile</a></div></div>
+          <div class="row"><div class="k">LinkedIn</div><div class="v"><a href="https://www.linkedin.com/in/temidayo-elufisan">in/temidayo-elufisan</a></div></div>
+          <div class="row"><div class="k">GitHub</div><div class="v"><a href="https://github.com/ptemidayo">github.com/ptemidayo</a></div></div>
+          <div class="row"><div class="k">CV</div><div class="v"><a href="assets/Elufisan_CV.pdf" download>Download (PDF)</a></div></div>
+          <div class="row"><div class="k">Current affiliation</div><div class="v">USDA-ARS · Foreign Animal Disease Research Unit</div></div>
+        </div>
+
+        <div style="margin-top:40px;padding:24px;background:var(--bone-2);border-left:2px solid var(--forest);">
+          <div class="mono-label">Note for students</div>
+          <p class="body-prose" style="margin-top:10px;">If you're writing about a graduate project or a thesis, send a short paragraph describing your question and the kind of data you have or want. That gives me enough to say something useful in reply.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="foot-title">Elufisan.</div><div class="foot-sub">T. Olukayode · est. 2013</div></div>
+      <div><h5>Navigate</h5><ul><li><a href="index.html">Index</a></li><li><a href="about.html">About</a></li><li><a href="research.html">Research</a></li><li><a href="publications.html">Publications</a></li></ul></div>
+      <div><h5>Elsewhere</h5><ul><li><a href="https://orcid.org/0000-0002-8645-2049">ORCID</a></li><li><a href="https://scholar.google.com/citations?user=Elufisan">Scholar</a></li></ul></div>
+      <div><h5>Contact</h5><ul><li><a href="mailto:ptemidayo@gmail.com">ptemidayo@gmail.com</a></li></ul></div>
+    </div>
+    <div class="bot"><div>© 2026 Temidayo O. Elufisan</div><div>elufisantemidayo.com</div></div>
+  </div>
+</footer>
+
+<script src="app.js?v=1776625764458"></script>
+</body>
+</html>
