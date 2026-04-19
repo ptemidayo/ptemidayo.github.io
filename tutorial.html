@@ -1,0 +1,545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>TUT.01 · Assemble a bacterial genome — elufisan.lab</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@400;500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .tut-wrap { display: grid; grid-template-columns: 280px 1fr; gap: 0; min-height: calc(100vh - 46px); }
+  @media (max-width: 900px) { .tut-wrap { grid-template-columns: 1fr; } }
+  .tut-side {
+    border-right: 1px solid var(--rule); padding: 28px 20px;
+    font-family: var(--mono); font-size: 12px;
+    background: var(--paper-2);
+    position: sticky; top: 46px; height: calc(100vh - 46px); overflow-y: auto;
+  }
+  @media (max-width: 900px) { .tut-side { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--rule); } }
+  .tut-side h3 { font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 12px; }
+  .tut-side .step-link {
+    display: block; padding: 8px 10px; border-left: 2px solid transparent;
+    color: var(--ink-2); cursor: pointer; border-bottom: none;
+  }
+  .tut-side .step-link:hover { background: var(--paper); }
+  .tut-side .step-link.on { border-left-color: var(--agar); background: var(--paper); color: var(--ink); }
+  .tut-side .step-link .n { color: var(--ink-3); margin-right: 8px; }
+  .tut-side .step-link.on .n { color: var(--agar); }
+  .tut-side .step-link.done .n::after { content: " ✓"; color: var(--agar); }
+
+  .tut-main { padding: 36px 48px 80px; max-width: 900px; }
+  @media (max-width: 900px) { .tut-main { padding: 28px 20px 60px; } }
+  .tut-head {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--agar-dark); margin-bottom: 8px;
+  }
+  .tut-main h1 { font-size: 38px; margin-bottom: 6px; }
+  .tut-sub { color: var(--ink-2); font-size: 15px; margin-bottom: 28px; max-width: 65ch; }
+
+  .progress-bar {
+    display: flex; gap: 4px; margin-bottom: 28px;
+  }
+  .progress-bar .seg {
+    flex: 1; height: 4px; background: var(--rule-soft);
+  }
+  .progress-bar .seg.on { background: var(--agar); }
+  .progress-bar .seg.current { background: var(--ink); }
+
+  .step-panel { display: none; }
+  .step-panel.active { display: block; }
+
+  .step-panel h2 {
+    font-size: 26px; margin-bottom: 6px;
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  .step-panel h2 .idx { font-family: var(--mono); font-size: 14px; color: var(--agar-dark); }
+  .step-panel p { font-size: 15px; color: var(--ink-2); line-height: 1.65; max-width: 65ch; }
+  .step-panel p b { color: var(--ink); }
+  .step-panel ul { color: var(--ink-2); padding-left: 22px; }
+  .step-panel ul li { margin-bottom: 6px; }
+
+  .terminal {
+    background: #141714;
+    border: 1px solid #2a2e2a;
+    color: #e8e6d9;
+    font-family: var(--mono); font-size: 13px; line-height: 1.6;
+    padding: 16px 18px;
+    margin: 20px 0;
+    overflow-x: auto;
+    border-radius: 2px;
+    position: relative;
+  }
+  .terminal::before {
+    content: "● ● ●";
+    position: absolute; top: 8px; right: 12px;
+    color: #454843; font-size: 10px; letter-spacing: 4px;
+  }
+  .terminal .label {
+    font-size: 10px; color: #6a6e66;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .terminal .prompt { color: oklch(0.72 0.14 145); }
+  .terminal .flag { color: oklch(0.72 0.14 75); }
+  .terminal .comment { color: #6a6e66; font-style: italic; }
+  .terminal .out { color: #b8b5a4; }
+  .terminal .ok { color: oklch(0.72 0.14 145); }
+  .terminal .warn { color: oklch(0.72 0.14 75); }
+  .terminal .err { color: oklch(0.7 0.18 25); }
+
+  .callout {
+    border-left: 3px solid var(--dna);
+    background: var(--dna-soft);
+    padding: 12px 16px;
+    margin: 18px 0;
+    font-size: 14px;
+  }
+  .callout .tag { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; color: var(--dna); text-transform: uppercase; margin-bottom: 4px; }
+  .callout p { margin: 0; color: var(--ink); }
+
+  .step-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 36px; padding-top: 20px; border-top: 1px dashed var(--rule);
+  }
+
+  /* Run button */
+  .runbox {
+    margin: 20px 0; border: 1px solid var(--rule);
+    background: var(--paper-2);
+  }
+  .runbox-head {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 12px; border-bottom: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .runbox-head .runbtn {
+    font-family: var(--mono); font-size: 11px;
+    padding: 4px 10px; cursor: pointer;
+    background: var(--ink); color: var(--paper); border: none;
+  }
+  .runbox-head .runbtn:hover { background: var(--agar-dark); }
+  .runbox .sim-out {
+    padding: 14px 18px; font-family: var(--mono); font-size: 12px;
+    color: var(--ink); min-height: 80px; white-space: pre-wrap;
+    background: #141714; color: #e8e6d9;
+  }
+  .runbox .sim-out .ok { color: oklch(0.72 0.14 145); }
+  .runbox .sim-out .meta { color: #6a6e66; }
+  .runbox .sim-out .warn { color: oklch(0.72 0.14 75); }
+
+  /* Step 3: QC chart */
+  .qc-chart { display: flex; align-items: flex-end; gap: 2px; height: 140px; margin: 16px 0 10px; }
+  .qc-chart .bar {
+    flex: 1; background: var(--agar); position: relative;
+    transition: height 0.4s ease;
+  }
+  .qc-chart .bar[data-q="low"]  { background: oklch(0.68 0.18 25); }
+  .qc-chart .bar[data-q="mid"]  { background: oklch(0.72 0.14 75); }
+  .qc-chart .bar[data-q="high"] { background: oklch(0.58 0.13 145); }
+  .qc-axis { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; color: var(--ink-3); }
+
+  /* Step 4: contigs viz */
+  .contigs { display: flex; flex-direction: column; gap: 3px; margin: 16px 0; }
+  .contig {
+    display: flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+  }
+  .contig .bar { height: 10px; background: var(--agar); }
+  .contig .len { min-width: 70px; text-align: right; color: var(--ink); }
+
+  /* Step 5: annotation pills */
+  .annot-wrap {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 6px; margin: 16px 0;
+  }
+  .annot {
+    font-family: var(--mono); font-size: 11px;
+    padding: 6px 8px; background: var(--paper-2);
+    border: 1px solid var(--rule); color: var(--ink-2);
+  }
+  .annot b { color: var(--agar-dark); }
+  .annot.r { border-left: 3px solid var(--plasma); }
+  .annot.m { border-left: 3px solid var(--dna); }
+  .annot.t { border-left: 3px solid var(--agar); }
+
+  /* Step 6: compare */
+  .compare {
+    display: grid; grid-template-columns: 100px repeat(3, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    font-family: var(--mono); font-size: 12px;
+  }
+  .compare > div { padding: 8px 10px; background: var(--paper); }
+  .compare .hdr { background: var(--paper-2); color: var(--ink-3); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .compare .lbl { background: var(--paper-2); color: var(--ink); }
+
+  .done-badge {
+    display: inline-block; padding: 5px 12px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+    background: var(--agar-soft); color: var(--agar-dark);
+    border: 1px solid var(--agar);
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">
+    <span class="prompt">$</span>
+    <span class="name">elufisan.lab</span><span class="cursor"></span>
+    <span style="color:var(--ink-3);margin-left:12px">/ teaching / TUT.01</span>
+  </div>
+  <nav>
+    <a href="index.html#teaching">← back to teaching</a>
+    <a href="index.html">home</a>
+  </nav>
+  <div class="meta">
+    <span class="status-dot"></span>
+    <span id="clock">—</span>
+  </div>
+</div>
+
+<div class="tut-wrap">
+  <aside class="tut-side">
+    <h3>TUT.01 · steps</h3>
+    <div class="step-link" data-step="1"><span class="n">01</span> set the stage</div>
+    <div class="step-link" data-step="2"><span class="n">02</span> meet your reads</div>
+    <div class="step-link" data-step="3"><span class="n">03</span> quality control</div>
+    <div class="step-link" data-step="4"><span class="n">04</span> assemble with SPAdes</div>
+    <div class="step-link" data-step="5"><span class="n">05</span> annotate with Prokka</div>
+    <div class="step-link" data-step="6"><span class="n">06</span> compare &amp; publish</div>
+
+    <h3 style="margin-top:28px">based on</h3>
+    <p style="font-family:var(--sans);font-size:12px;color:var(--ink-2);line-height:1.5">
+      Elufisan <i>et al.</i> (2019) <i>Complete Genome Sequence of S. maltophilia SVIA2</i>, <b>Microbiology Resource Announcements</b> 8(30).
+    </p>
+
+    <h3 style="margin-top:28px">stuck?</h3>
+    <p style="font-family:var(--sans);font-size:12px;color:var(--ink-2);line-height:1.5">
+      Open the tutor (↘ bottom right) — it's trained on these steps and will answer follow-ups.
+    </p>
+  </aside>
+
+  <main class="tut-main">
+    <div class="tut-head">▸ TUT.01 · interactive walkthrough · ≈ 25 min</div>
+    <h1>Assemble a bacterial genome from scratch</h1>
+    <p class="tut-sub">A hands-on tour of the pipeline I use for every bacterial isolate I sequence — from raw reads to an annotated, comparable genome. You don't need anything installed; the command blocks are illustrative, and the charts simulate realistic output.</p>
+
+    <div class="progress-bar" id="progress"></div>
+
+    <!-- STEP 1 -->
+    <div class="step-panel" data-step="1">
+      <h2><span class="idx">step 01</span> Set the stage</h2>
+      <p>You have a bacterial isolate — let's call it <b>S. maltophilia SVIA2</b>. You've purified its DNA, handed it to a sequencing core, and received back a pair of <b>FASTQ</b> files: forward reads (<code>R1</code>) and reverse reads (<code>R2</code>). Our goal is to turn those millions of short sequences into one coherent, annotated genome.</p>
+
+      <div class="callout">
+        <div class="tag">why pairs?</div>
+        <p>Paired-end sequencing reads <b>both ends</b> of the same DNA fragment, so we know roughly how far apart the two reads are. That distance information is gold later — it helps the assembler resolve repeats.</p>
+      </div>
+
+      <div class="terminal">
+        <div class="label">~/projects/svia2/</div>
+        <span class="prompt">$</span> ls -lh raw/<br>
+        <span class="out">-rw-r--r--  1 tem  staff  1.2G  apr 19 09:14  SVIA2_R1.fastq.gz</span><br>
+        <span class="out">-rw-r--r--  1 tem  staff  1.2G  apr 19 09:14  SVIA2_R2.fastq.gz</span><br>
+        <span class="prompt">$</span> zcat raw/SVIA2_R1.fastq.gz | head -4<br>
+        <span class="out">@M01234:15:000-ABCDE:1:1101:15789:1320 1:N:0:1</span><br>
+        <span class="out">GATCGGAAGAGCACACGTCTGAACTCCAGTCA…</span><br>
+        <span class="out">+</span><br>
+        <span class="out">AAAAAFFFFFFFFGGGGGGGGGGHHHGGHHH…</span>
+      </div>
+
+      <p>Each 4-line block is <b>one read</b>: a header, the nucleotide sequence, a separator, and a quality string where each character is a confidence score. That's what we're working with — millions of these.</p>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step-panel" data-step="2">
+      <h2><span class="idx">step 02</span> Meet your reads</h2>
+      <p>Before doing anything clever, always count. How many reads? How long are they? What's the expected coverage?</p>
+
+      <div class="runbox">
+        <div class="runbox-head"><span>&gt; simulate: inspect reads</span><button class="runbtn" onclick="runStep2(this)">run</button></div>
+        <div class="sim-out" id="s2out">waiting…</div>
+      </div>
+
+      <p>Coverage is the number of times, on average, each base in the genome is sequenced. For bacterial isolates we aim for <b>~80–100×</b> with short reads — enough that errors in individual reads get voted out by consensus, but not so much that the assembler chokes on redundancy.</p>
+
+      <ul>
+        <li>Reads × length ÷ genome size ≈ coverage</li>
+        <li>8 M reads × 151 bp ÷ 4.8 Mb ≈ <b>251×</b> — plenty for S. maltophilia.</li>
+      </ul>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step-panel" data-step="3">
+      <h2><span class="idx">step 03</span> Quality control (FastQC &amp; trimming)</h2>
+      <p>Sequencers are wonderfully reliable at the <b>start</b> of a read and degrade toward the end. Plot per-base quality and you'll see it — a high plateau that slumps at the 3' end. Here's the typical shape, simulated:</p>
+
+      <div class="qc-chart" id="qc"></div>
+      <div class="qc-axis"><span>base 1</span><span>base 75</span><span>base 150</span></div>
+
+      <p>Nothing alarming — bases 1–120 are solid, 130-plus dips. Time to trim.</p>
+
+      <div class="terminal">
+        <div class="label">$ trimmomatic PE</div>
+        <span class="prompt">$</span> trimmomatic PE -phred33 \<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;raw/SVIA2_R1.fastq.gz raw/SVIA2_R2.fastq.gz \<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;qc/R1_paired.fq.gz qc/R1_unpaired.fq.gz \<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;qc/R2_paired.fq.gz qc/R2_unpaired.fq.gz \<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="flag">ILLUMINACLIP:</span>adapters.fa:2:30:10 <span class="flag">SLIDINGWINDOW:</span>4:20 <span class="flag">MINLEN:</span>50<br>
+        <span class="out">Input Read Pairs: 8,214,332</span><br>
+        <span class="ok">Both Surviving: 8,011,410 (97.52%)</span><br>
+        <span class="out">Forward Only: 142,881 · Reverse Only: 38,204</span><br>
+        <span class="warn">Dropped: 21,837 (0.27%)</span>
+      </div>
+
+      <div class="callout">
+        <div class="tag">rule of thumb</div>
+        <p>Keep &gt;95% of pairs after trimming. If you're losing 20% of your data, something is wrong with the library or adapters — go back to the sequencing core before assembling.</p>
+      </div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step-panel" data-step="4">
+      <h2><span class="idx">step 04</span> Assemble with SPAdes</h2>
+      <p>SPAdes builds a <b>de Bruijn graph</b> from overlapping k-mers in your reads, then walks the graph to reconstruct long, contiguous sequences — <b>contigs</b>. For an isolate you won't usually get a single perfect chromosome; you'll get a set of contigs that together cover the genome.</p>
+
+      <div class="terminal">
+        <div class="label">$ spades.py</div>
+        <span class="prompt">$</span> spades.py --isolate \<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="flag">-1</span> qc/R1_paired.fq.gz <span class="flag">-2</span> qc/R2_paired.fq.gz \<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="flag">-o</span> asm/ <span class="flag">-t</span> 16 <span class="flag">-k</span> 21,33,55,77,99,127<br>
+        <span class="out">==&gt; Reading input</span><br>
+        <span class="out">==&gt; K-mer counting (k=21,33,55,77,99,127)</span><br>
+        <span class="out">==&gt; Assembly graph construction</span><br>
+        <span class="out">==&gt; Contig extraction &amp; scaffolding</span><br>
+        <span class="ok">==&gt; Finished. See asm/scaffolds.fasta</span>
+      </div>
+
+      <p style="margin-top:14px">The resulting contigs — sorted longest to shortest — might look like this:</p>
+
+      <div class="contigs" id="contigs"></div>
+
+      <ul>
+        <li><b>N50</b> ≈ 412,803 bp — half the genome sits in contigs longer than this.</li>
+        <li>Total assembly ≈ <b>4.82 Mb</b>, close to the expected S. maltophilia genome size.</li>
+        <li>GC content ≈ <b>66.3%</b>, which matches the genus. A wildly different GC would hint at contamination.</li>
+      </ul>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step-panel" data-step="5">
+      <h2><span class="idx">step 05</span> Annotate with Prokka</h2>
+      <p>A sequence is useful; <b>genes</b> are what we care about. Prokka hands your contigs to a pipeline of tools (Prodigal for CDS prediction, HMMER against curated databases, Aragorn for tRNAs, Barrnap for rRNAs) and produces a GFF you can drop into IGV.</p>
+
+      <div class="terminal">
+        <div class="label">$ prokka</div>
+        <span class="prompt">$</span> prokka <span class="flag">--outdir</span> annot/ <span class="flag">--prefix</span> SVIA2 \<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="flag">--genus</span> Stenotrophomonas <span class="flag">--species</span> maltophilia \<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="flag">--cpus</span> 16 asm/scaffolds.fasta<br>
+        <span class="out">[predict] 4,401 CDS</span><br>
+        <span class="out">[predict] 74 tRNAs · 6 rRNAs · 1 tmRNA</span><br>
+        <span class="ok">[done]    wrote annot/SVIA2.gff, .gbk, .faa, .tbl</span>
+      </div>
+
+      <p>A tiny slice of what came back — some of which becomes the story you tell in the paper:</p>
+
+      <div class="annot-wrap">
+        <div class="annot m"><b>nahG</b> · salicylate 1-monooxygenase</div>
+        <div class="annot m"><b>phnA</b> · phenanthrene dioxygenase α</div>
+        <div class="annot r"><b>sme</b>R · MDR efflux regulator</div>
+        <div class="annot r"><b>blaL1</b> · metallo-β-lactamase</div>
+        <div class="annot r"><b>qnrB</b> · quinolone resistance</div>
+        <div class="annot t"><b>16S</b> rRNA · 1542 bp</div>
+        <div class="annot m"><b>catA</b> · catechol dioxygenase</div>
+        <div class="annot t"><b>recA</b> · DNA recombination</div>
+        <div class="annot r"><b>smeE</b> · efflux pump</div>
+        <div class="annot m"><b>dmpB</b> · 2,3-dihydroxybiphenyl 1,2-dioxygenase</div>
+        <div class="annot t"><b>gyrB</b> · DNA gyrase subunit B</div>
+        <div class="annot m"><b>alkB</b> · alkane monooxygenase</div>
+      </div>
+
+      <div class="callout">
+        <div class="tag">interpret</div>
+        <p>Two overlapping stories appear in a single annotated genome: a <b>metabolic one</b> (what can this bug eat?) and a <b>resistance one</b> (what can it tolerate?). Both were central to the Stenotrophomonas sp. Pemsol story — PAH degradation <i>and</i> MDR on one chromosome.</p>
+      </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step-panel" data-step="6">
+      <h2><span class="idx">step 06</span> Compare &amp; publish</h2>
+      <p>One genome alone is a snapshot. Placed next to relatives, it becomes a <b>datapoint</b>. Before submitting to GenBank, I run a quick comparison against published strains:</p>
+
+      <div class="compare">
+        <div class="hdr">strain</div><div class="hdr">size (Mb)</div><div class="hdr">GC %</div><div class="hdr">CDS</div>
+        <div class="lbl">SVIA2</div><div>4.82</div><div>66.3</div><div>4,401</div>
+        <div class="lbl">K279a</div><div>4.85</div><div>66.3</div><div>4,386</div>
+        <div class="lbl">R551-3</div><div>4.57</div><div>66.9</div><div>4,112</div>
+        <div class="lbl">Pemsol</div><div>4.91</div><div>66.1</div><div>4,528</div>
+      </div>
+
+      <p style="margin-top:18px">Nothing surprising — SVIA2 sits comfortably in its genus. That's the <b>null result</b> you want before digging into what makes your isolate distinct (in SVIA2's case: an unusual configuration of PAH-catabolic clusters).</p>
+
+      <p>Then: deposit to GenBank / ENA, write a short <b>Microbiology Resource Announcement</b>, and link back here so students can see the whole pipeline end-to-end.</p>
+
+      <div class="done-badge">▸ tutorial complete · you've just assembled a genome</div>
+
+      <p style="margin-top:24px">Next up (drafts): <b>TUT.02</b> — how NGS sequencers actually work · <b>TUT.03</b> — AMR from a genome point of view. Both coming this quarter.</p>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn ghost" id="prev"><span class="caret">◂</span> previous</button>
+      <span id="step-status" style="font-family:var(--mono);font-size:11px;color:var(--ink-3)">step 1 of 6</span>
+      <button class="btn" id="next">next <span class="caret">▸</span></button>
+    </div>
+  </main>
+</div>
+
+<!-- AI TUTOR (same component as homepage) -->
+<div id="tutor" class="tutor">
+  <button id="tutor-open" class="tutor-toggle">
+    <span class="dot"></span>
+    <span>ask_the_tutor</span>
+  </button>
+  <div class="tutor-panel">
+    <div class="tutor-header">
+      <div class="title"><span class="dot"></span> tutor // dr.e · teaching assistant</div>
+      <button id="tutor-close" class="close">×</button>
+    </div>
+    <div id="tutor-body" class="tutor-body"></div>
+    <div class="tutor-suggestions">
+      <div class="sug" data-q="What is a de Bruijn graph and why does SPAdes use one?">↳ de Bruijn graphs?</div>
+      <div class="sug" data-q="Why do we need to trim reads before assembly?">↳ why trim?</div>
+      <div class="sug" data-q="What is N50 and how should I interpret it?">↳ N50 explained</div>
+      <div class="sug" data-q="What is Prokka actually doing when it annotates a genome?">↳ prokka internals</div>
+    </div>
+    <form id="tutor-form" class="tutor-input">
+      <span class="prefix">&gt;</span>
+      <input id="tutor-input" autocomplete="off" placeholder="ask about this step…">
+      <button id="tutor-send" type="submit">send</button>
+    </form>
+  </div>
+</div>
+
+<div id="tweaks-panel" class="tweaks-panel"></div>
+
+<script src="app.js"></script>
+<script>
+  const TOTAL = 6;
+  let cur = 1;
+  const seen = new Set([1]);
+
+  function render() {
+    document.querySelectorAll('.step-panel').forEach(p => {
+      p.classList.toggle('active', +p.dataset.step === cur);
+    });
+    document.querySelectorAll('.step-link').forEach(l => {
+      const n = +l.dataset.step;
+      l.classList.toggle('on', n === cur);
+      l.classList.toggle('done', seen.has(n) && n < cur);
+    });
+    const bar = document.getElementById('progress');
+    bar.innerHTML = Array.from({length: TOTAL}, (_, i) => {
+      const n = i + 1;
+      return `<div class="seg ${n < cur ? 'on' : ''} ${n === cur ? 'current' : ''}"></div>`;
+    }).join('');
+    document.getElementById('step-status').textContent = `step ${cur} of ${TOTAL}`;
+    document.getElementById('prev').disabled = cur === 1;
+    document.getElementById('next').disabled = cur === TOTAL;
+    document.getElementById('next').innerHTML = cur === TOTAL ? 'done <span class="caret">✓</span>' : 'next <span class="caret">▸</span>';
+    localStorage.setItem('tut01_step', cur);
+    if (cur === 3) renderQC();
+    if (cur === 4) renderContigs();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function go(n) { cur = Math.max(1, Math.min(TOTAL, n)); seen.add(cur); render(); }
+
+  document.getElementById('prev').onclick = () => go(cur - 1);
+  document.getElementById('next').onclick = () => { if (cur < TOTAL) go(cur + 1); };
+  document.querySelectorAll('.step-link').forEach(l => l.onclick = () => go(+l.dataset.step));
+
+  // Step 2 simulation
+  window.runStep2 = function (btn) {
+    const out = document.getElementById('s2out');
+    btn.disabled = true;
+    out.innerHTML = '';
+    const lines = [
+      { t: '$ seqkit stats qc/R1_paired.fq.gz qc/R2_paired.fq.gz', c: 'meta' },
+      { t: 'file                       format  type  num_seqs      sum_len  min  avg    max', c: 'meta' },
+      { t: 'qc/R1_paired.fq.gz         FASTQ   DNA   8,011,410   1.21 Gbp   50  151    151' },
+      { t: 'qc/R2_paired.fq.gz         FASTQ   DNA   8,011,410   1.21 Gbp   50  150.8  151' },
+      { t: '' },
+      { t: '# expected genome size ≈ 4.8 Mb   (S. maltophilia)', c: 'meta' },
+      { t: '# coverage = (reads × length) / genome_size', c: 'meta' },
+      { t: '# = (8.0M × 151) / 4.8M ≈ 251×', c: 'meta' },
+      { t: '' },
+      { t: 'coverage OK — proceeding to trimming.', c: 'ok' },
+    ];
+    let i = 0;
+    const iv = setInterval(() => {
+      if (i >= lines.length) { clearInterval(iv); btn.disabled = false; return; }
+      const l = lines[i++];
+      const span = document.createElement('div');
+      if (l.c) span.className = l.c;
+      span.textContent = l.t;
+      out.appendChild(span);
+    }, 140);
+  };
+
+  // Step 3 QC chart
+  function renderQC() {
+    const el = document.getElementById('qc');
+    if (el.dataset.done) return;
+    el.dataset.done = '1';
+    const data = [];
+    for (let i = 0; i < 60; i++) {
+      let q;
+      if (i < 5) q = 28 + Math.random() * 4;
+      else if (i < 45) q = 36 + Math.random() * 3;
+      else q = 36 - (i - 45) * 1.8 + Math.random() * 2;
+      data.push(q);
+    }
+    data.forEach(q => {
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      bar.dataset.q = q > 30 ? 'high' : q > 22 ? 'mid' : 'low';
+      bar.style.height = '0%';
+      el.appendChild(bar);
+      setTimeout(() => bar.style.height = `${(q / 40) * 100}%`, 50);
+    });
+  }
+
+  // Step 4 contigs
+  function renderContigs() {
+    const el = document.getElementById('contigs');
+    if (el.dataset.done) return;
+    el.dataset.done = '1';
+    const lens = [842110, 681203, 547890, 412803, 298432, 247119, 198345, 142008, 98733, 72104, 54219, 41088, 31244, 24871, 18932, 12018];
+    const maxW = lens[0];
+    lens.forEach((L, i) => {
+      const row = document.createElement('div');
+      row.className = 'contig';
+      row.innerHTML = `<span style="width:70px">contig_${String(i+1).padStart(2,'0')}</span><div class="bar" style="width:0%"></div><span class="len">${L.toLocaleString()} bp</span>`;
+      el.appendChild(row);
+      setTimeout(() => row.querySelector('.bar').style.width = `${(L/maxW)*60}%`, 50 + i * 30);
+    });
+  }
+
+  // init
+  const saved = parseInt(localStorage.getItem('tut01_step') || '1', 10);
+  go(isNaN(saved) ? 1 : saved);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    __initClock();
+    __initTutor();
+    __initTweaks();
+  });
+</script>
+</body>
+</html>
