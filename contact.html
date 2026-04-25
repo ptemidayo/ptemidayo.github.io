@@ -51,12 +51,12 @@
         </div>
         <div class="field"><label>Message</label><textarea name="message" rows="6" required></textarea></div>
         <button type="submit" class="btn">Send <span class="arrow">→</span></button>
-        <div class="form-msg" id="formMsg">Your email client should have opened. If not, write to ptemidayo@gmail.com directly.</div>
+        <div class="form-msg" id="formMsg">Your email client should have opened. If not, write to temidayo@elufisantemidayo.com directly.</div>
       </form>
 
       <div>
         <div class="facts-stack" style="margin-top:0;border-top:1px solid var(--rule);">
-          <div class="row"><div class="k">Email</div><div class="v"><a href="mailto:ptemidayo@gmail.com">ptemidayo@gmail.com</a></div></div>
+          <div class="row"><div class="k">Email</div><div class="v"><a href="mailto:temidayo@elufisantemidayo.com">temidayo@elufisantemidayo.com</a></div></div>
           <div class="row"><div class="k">ORCID</div><div class="v"><a href="https://orcid.org/0000-0002-8645-2049">0000-0002-8645-2049</a></div></div>
           <div class="row"><div class="k">Scholar</div><div class="v"><a href="https://scholar.google.com/citations?user=Elufisan">Google Scholar profile</a></div></div>
           <div class="row"><div class="k">LinkedIn</div><div class="v"><a href="https://www.linkedin.com/in/temidayo-elufisan">in/temidayo-elufisan</a></div></div>
@@ -74,18 +74,37 @@
   </div>
 </section>
 
+<section class="section forest" style="padding:60px 0;">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:40px;">
+      <div>
+        <div class="eyebrow" style="color:var(--butter);">Book a call</div>
+        <h2 class="display" style="margin-top:18px;color:var(--bone);">Pick a time<br/>that <em>works</em>.</h2>
+      </div>
+      <p style="color:var(--forest-soft);font-size:17px;line-height:1.55;">For collaborators, hiring conversations, students, and tutorial co-authors. Slots auto-update from my Google Calendar — pick anything that's open.</p>
+    </div>
+    <div id="cal-inline" style="background:var(--bone);min-height:640px;border:1px solid var(--rule);"></div>
+  </div>
+</section>
+
 <footer>
   <div class="container">
     <div class="footer-grid">
       <div><div class="foot-title">Elufisan.</div><div class="foot-sub">T. Olukayode · est. 2013</div></div>
       <div><h5>Navigate</h5><ul><li><a href="index.html">Index</a></li><li><a href="about.html">About</a></li><li><a href="research.html">Research</a></li><li><a href="publications.html">Publications</a></li></ul></div>
       <div><h5>Elsewhere</h5><ul><li><a href="https://orcid.org/0000-0002-8645-2049">ORCID</a></li><li><a href="https://scholar.google.com/citations?user=Elufisan">Scholar</a></li></ul></div>
-      <div><h5>Contact</h5><ul><li><a href="mailto:ptemidayo@gmail.com">ptemidayo@gmail.com</a></li></ul></div>
+      <div><h5>Contact</h5><ul><li><a href="mailto:temidayo@elufisantemidayo.com">temidayo@elufisantemidayo.com</a></li></ul></div>
     </div>
     <div class="bot"><div>© 2026 Temidayo O. Elufisan</div><div>elufisantemidayo.com</div></div>
   </div>
 </footer>
 
 <script src="app.js?v=1776625764458"></script>
+<script>
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "30min", {origin: "https://cal.com"});
+  Cal.ns["30min"]("inline", {elementOrSelector: "#cal-inline", config: {layout: "month_view"}, calLink: "elufisan-temidayo-rwqcmo/30min"});
+  Cal.ns["30min"]("ui", {styles: {branding: {brandColor: "#1f3a2e"}}, hideEventTypeDetails: false});
+</script>
 </body>
 </html>

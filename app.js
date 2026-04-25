@@ -369,6 +369,28 @@ function mountTutor() {
   });
 }
 
+// ---------- TEXT SIZE TOGGLE ----------
+function mountTextSize() {
+  if (document.querySelector('.textsize')) return;
+  const saved = localStorage.getItem('textsize') || 'medium';
+  const scales = { small: 0.9, medium: 1, large: 1.15 };
+  const apply = (key) => {
+    document.documentElement.style.setProperty('--text-scale', scales[key]);
+    localStorage.setItem('textsize', key);
+    document.querySelectorAll('.textsize button').forEach(b => b.classList.toggle('on', b.dataset.size === key));
+  };
+  const bar = document.createElement('div');
+  bar.className = 'textsize';
+  bar.innerHTML = `
+    <span class="label">Aa</span>
+    <button data-size="small" aria-label="Small text">S</button>
+    <button data-size="medium" aria-label="Medium text">M</button>
+    <button data-size="large" aria-label="Large text">L</button>`;
+  document.body.appendChild(bar);
+  bar.querySelectorAll('button').forEach(b => b.addEventListener('click', () => apply(b.dataset.size)));
+  apply(saved);
+}
+
 // ---------- NAV: mark active page ----------
 function markActiveNav() {
   const path = location.pathname.split('/').pop() || 'index.html';
@@ -441,6 +463,7 @@ function mountContact() {
 // ---------- DOM ready ----------
 document.addEventListener('DOMContentLoaded', () => {
   markActiveNav();
+  mountTextSize();
   mountPublications();
   mountContact();
   mountTutor();

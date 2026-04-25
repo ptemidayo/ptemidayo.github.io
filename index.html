@@ -193,7 +193,8 @@
         <p class="body-prose">I'm open to collaboration on applied microbiology, NGS, comparative genomics and tutorial co-authorship. Students looking for help framing a sequencing project — also welcome.</p>
         <div style="display:flex;gap:14px;margin-top:24px;flex-wrap:wrap;">
           <a class="btn" href="contact.html">Send a note <span class="arrow">→</span></a>
-          <a class="btn ghost" href="mailto:ptemidayo@gmail.com">ptemidayo@gmail.com</a>
+          <button class="btn" data-cal-link="elufisan-temidayo-rwqcmo/30min" data-cal-config='{"theme":"light"}'>Book a call <span class="arrow">→</span></button>
+          <a class="btn ghost" href="mailto:temidayo@elufisantemidayo.com">temidayo@elufisantemidayo.com</a>
         </div>
       </div>
     </div>
@@ -230,7 +231,7 @@
       <div>
         <h5>Contact</h5>
         <ul>
-          <li><a href="mailto:ptemidayo@gmail.com">ptemidayo@gmail.com</a></li>
+          <li><a href="mailto:temidayo@elufisantemidayo.com">temidayo@elufisantemidayo.com</a></li>
           <li><a href="contact.html">Contact form</a></li>
           <li><a href="assets/Elufisan_CV.pdf">CV (PDF)</a></li>
         </ul>
@@ -245,6 +246,11 @@
 
 <script src="publications.js?v=1776625758112"></script>
 <script src="app.js?v=1776625758112"></script>
+<script>
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", {origin: "https://cal.com"});
+  Cal("ui", {styles: {branding: {brandColor: "#1f3a2e"}}, hideEventTypeDetails: false});
+</script>
 <script>
   // Inject decorative art into [data-art]
   document.querySelectorAll('[data-art]').forEach(el => {

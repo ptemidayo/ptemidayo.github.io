@@ -39,6 +39,16 @@
 </section>
 
 <section class="section tight">
+  <div class="container" style="display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:32px 0;background:var(--bone-2);padding-left:32px;padding-right:32px;border:1px solid var(--rule);">
+    <div>
+      <div class="eyebrow">Office hours</div>
+      <p style="font-family:var(--display);font-style:italic;font-size:24px;margin:6px 0 0;">Stuck on a tutorial? Book a 30-minute slot.</p>
+    </div>
+    <button class="btn" data-cal-link="elufisan-temidayo-rwqcmo/30min" data-cal-config='{"theme":"light"}'>Book office hours <span class="arrow">→</span></button>
+  </div>
+</section>
+
+<section class="section tight">
   <div class="container">
     <div class="tut-grid">
       <a class="tut-card" href="tutorial.html">
@@ -89,12 +99,17 @@
       <div><div class="foot-title">Elufisan.</div><div class="foot-sub">T. Olukayode · est. 2013</div></div>
       <div><h5>Navigate</h5><ul><li><a href="index.html">Index</a></li><li><a href="about.html">About</a></li><li><a href="research.html">Research</a></li><li><a href="publications.html">Publications</a></li></ul></div>
       <div><h5>Elsewhere</h5><ul><li><a href="https://orcid.org/0000-0002-8645-2049">ORCID</a></li><li><a href="https://scholar.google.com/citations?user=Elufisan">Scholar</a></li></ul></div>
-      <div><h5>Contact</h5><ul><li><a href="mailto:ptemidayo@gmail.com">ptemidayo@gmail.com</a></li></ul></div>
+      <div><h5>Contact</h5><ul><li><a href="mailto:temidayo@elufisantemidayo.com">temidayo@elufisantemidayo.com</a></li></ul></div>
     </div>
     <div class="bot"><div>© 2026 Temidayo O. Elufisan</div><div>elufisantemidayo.com</div></div>
   </div>
 </footer>
 
 <script src="app.js?v=1776625764458"></script>
+<script>
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", {origin: "https://cal.com"});
+  Cal("ui", {styles: {branding: {brandColor: "#1f3a2e"}}, hideEventTypeDetails: false});
+</script>
 </body>
 </html>
